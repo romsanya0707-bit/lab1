@@ -117,4 +117,5 @@ def is_balanced_number(data: PositiveIntegerInput) -> bool:
     if s1 == s2:
         return True
     else:
-        return False    
+        return False
+
