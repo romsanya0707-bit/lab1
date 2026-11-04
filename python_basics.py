@@ -10,14 +10,12 @@ def count_vowels(data: TextInput) -> int:
 
 
 def has_unique_characters(data: TextInput) -> bool:
-    text = data.value
-    s = len(text)
-    for i in range(s):
-        for n in range(i + 1, s):
-            if text[i] == text[n]:
-                return False
+    seen_symbols = []
+    for symbol in data:
+        if symbol in seen_symbols:
+            return False
+        seen_symbols.append(symbol)
     return True
-
 
 
 def count_one_bits(data: PositiveIntegerInput) -> int:
@@ -59,34 +57,34 @@ def mse(data: VectorPairInput) -> float:
 
 
 def prime_factorization(data: PositiveIntegerInput) -> str:
-    number = data.value
-    a = ""
-    b = 2
-    while number > 1:
-        c = 0
-        while number % b == 0:
-            c = c + 1
-            number = number // b
-        if c > 0:
-            if c == 1:
-                a = a + "(" + str(b) + ")"
-            else:
-                a = a + "(" + str(b) + "**" + str(c) + ")"
-        b = b + 1
-    return a
+    n = data
+    divisor = 2
+    result = ""
+    while n > 1:
+        count = 0
+        while n % divisor == 0:
+            count += 1
+            n //= divisor
+        if count > 0:
+            if count == 1:
+                result += f"({divisor})"
+        else:
+            result += f"({divisor}**{count})"
+        divisor += 1
+
+    return result
 
 
 def pyramid(data: PositiveIntegerInput) -> int | str:
-    cube_count = data.value
-    s = 0
-    k = 0
-    while s < cube_count:
-        k = k + 1
-        s = s + (k * k)
-    if s == cube_count:
-        return k
-    else:
-        return "It is impossible"
+        cubes = data
+        k = 1
+        while cubes >= k ** 2:
+            cubes -= k ** 2
+            k += 1
+        if cubes == 0:
+            return k - 1
+        else:
+            return "It is impossible"
 
 
 def is_balanced_number(data: PositiveIntegerInput) -> bool:

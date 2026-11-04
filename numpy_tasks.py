@@ -35,8 +35,9 @@ def matrix_statistics(data: RandomMatrixInput) -> MatrixStatistics:
     m = np.random.normal(mean, std, (rows, columns))
     a = np.mean(m, axis=1)
     b = np.mean(m, axis=0)
-    c = np.var(m, axis=1)
-    d = np.var(m, axis=0)
+    c = np.var(m, axis=1, ddof=1)
+    d = np.var(m, axis=0, ddof=1)   
+
     return MatrixStatistics(m, a, b, c, d)
 
 
